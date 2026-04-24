@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Tier List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e1e1e;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.tier {
+  display: flex;
+  align-items: center;
+  background: #333;
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 60px;
+}
+
+.label {
+  width: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.S { background: gold; color: black; }
+.A { background: limegreen; color: black; }
+.B { background: dodgerblue; }
+.C { background: orange; }
+.D { background: crimson; }
+
+.items {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.item {
+  background: #555;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: grab;
+}
+
+.pool {
+  margin-top: 20px;
+  background: #222;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+  </style>
+</head>
+<body><h1>Minecraft Tier List</h1><div class="container">  <div class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="label S">S</div>
+    <div class="items" id="S"></div>
+  </div>  <div class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="label A">A</div>
+    <div class="items" id="A"></div>
+  </div>  <div class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="label B">B</div>
+    <div class="items" id="B"></div>
+  </div>  <div class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="label C">C</div>
+    <div class="items" id="C"></div>
+  </div>  <div class="tier" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="label D">D</div>
+    <div class="items" id="D"></div>
+  </div></div><h2 style="text-align:center;">Items</h2>
+<div class="pool" id="pool" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <div class="item" draggable="true" ondragstart="drag(event)" id="Diamond">Diamond</div>
+  <div class="item" draggable="true" ondragstart="drag(event)" id="Netherite">Netherite</div>
+  <div class="item" draggable="true" ondragstart="drag(event)" id="Wood">Wood</div>
+  <div class="item" draggable="true" ondragstart="drag(event)" id="Stone">Stone</div>
+  <div class="item" draggable="true" ondragstart="drag(event)" id="Iron">Iron</div>
+</div><script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+  const item = document.getElementById(data);
+  ev.target.closest(".tier, .pool").querySelector(".items, #pool")?.appendChild(item) || ev.target.appendChild(item);
+}
+</script></body>
+</html>
